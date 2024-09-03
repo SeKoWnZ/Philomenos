@@ -6,37 +6,61 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 13:21:32 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/02 18:39:58 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/03 18:38:10 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# include <unistd.h>
-# include <stdio.h>
+# include <errno.h>
 # include <pthread.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <limits.h>
+# include <string.h>
 
 typedef struct s_philo
 {
-	int		id;
-	int		m_eaten;
-}			t_philo;	
+	int			id;
+	int			die;
+	int			eat;
+	int			sleep;
+	int			m_eaten;
+	int			l_fork;
+	int			r_fork;
+}				t_philo;
 
 typedef struct s_table
 {
 	int			philo_n;
-	int			meals;
-	int			sleep;
-	pthread_t	*philos;
+	int			dead_phil;
+	t_philo		*philos;
 }				t_table;
+
+// ERRORS
+
+# define E_NUM "Error: Only numeric values accepted"
+# define E_NUM_P "Error: Invalid number of Philosophers"
+# define E_NUM_RANGE "Error: Invalid numeric input range"
+# define E_MALLOC "Error: Malloc memory problem!"
+
+// CHECKS
+
+int				str_isdigit(char *str);
 
 // INIT FUNCTIONS
 
-int		table_init(t_table *table, char **argv);
+int				table_init(t_table *table, char **argv);
+
+// ERROR HANDLE
+
+int				print_error(char *error);
 
 // LIB UTILS
 
-long	ft_atol(const char *str);
+int				not_ft_strlen(const char *s);
+long			not_ft_atol(const char *str);
+void			*not_ft_calloc(size_t count, size_t size);
 
 #endif

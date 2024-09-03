@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/02 13:16:10 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/03 12:22:29 by jose-gon         ###   ########.fr       */
+/*   Created: 2024/09/03 12:42:06 by jose-gon          #+#    #+#             */
+/*   Updated: 2024/09/03 13:24:05 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-int	main(int argc, char **argv)
+void	not_putstr_fd(char *s, int fd)
 {
-	t_table		table;
+	write(fd, s, not_ft_strlen(s));
+}
 
-	if (argc == 5 || argc == 6)
-	{
-		table_init(&table, argv++);
-	}
+int	print_error(char *error)
+{
+	not_putstr_fd(error, 2);
+	return (1);
 }

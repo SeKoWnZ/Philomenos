@@ -6,13 +6,24 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:59:39 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/02 18:02:56 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:27:39 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-long	ft_atol(const char *str)
+void	*not_ft_calloc(size_t count, size_t size)
+{
+	void	*point;
+
+	point = malloc(count * size);
+	if (point == 0)
+		return (0);
+	memset(point, 0, count * size);
+	return (point);
+}
+
+long	not_ft_atol(const char *str)
 {
 	long	final;
 	long	i;
@@ -35,4 +46,29 @@ long	ft_atol(const char *str)
 		i++;
 	}
 	return (final * negative);
+}
+
+int	str_isdigit(char *str)
+{
+	if (!str)
+		return (1);
+	while (*str)
+	{
+		if (*str >= '0' && *str <= '9')
+			return (*str);
+		str++;
+	}
+	return (0);
+}
+
+int	not_ft_strlen(const	char *s)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (i);
+	while (s[i])
+		i++;
+	return (i);
 }
