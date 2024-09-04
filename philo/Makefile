@@ -6,7 +6,7 @@ IFLAG = -I./include
 SRC_DIR = src
 OBJ_DIR = obj
 
-FILES = philo.c table_init.c lib_utils.c error.c
+FILES = philo.c table_init.c forks_init.c lib_utils.c error.c test.c
 
 OBJ_FILES = $(addprefix $(OBJ_DIR)/, $(FILES:.c=.o))
 

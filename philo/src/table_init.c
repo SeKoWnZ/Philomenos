@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:08:39 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/03 19:35:31 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/04 19:29:06 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,42 +33,35 @@ int	check_nums(char *val)
 	num = not_ft_atol(val);
 	if (num < 0 || num > INT_MAX)
 		num = -1;
-	return (num);
+	return ((int)num);
 }
 
-int	fill_philosophers(t_table *table, char **argv)
+int	fill_philosophers(t_table *table, char **argv, int i)
 {
 	int	die;
 	int	eat;
 	int	sleep;
 	int	meals;
 
+	meals = -2;
 	die = check_nums(argv[1]);
-	if (die == -1)
-		return (print_error(E_NUM_RANGE));
 	eat = check_nums(argv[2]);
-	if (eat == -1)
-		return (print_error(E_NUM_RANGE));
 	sleep = check_nums(argv[3]);
-	if (sleep == -1)
-		return (print_error(E_NUM_RANGE));
 	if (argv[4])
-	{
 		meals = check_nums(argv[4]);
-		if (meals == -1)
-			return (print_error(E_NUM_RANGE));
+	if (die == -1 || eat == -1 || sleep == -1 || meals == -1)
+		return (print_error(E_NUM_RANGE));
+	while (++i < table->philo_n)
+	{
+		table->philos[i].id = i + 1;
+		table->philos[i].die = die;
+		table->philos[i].eat = eat;
+		table->philos[i].sleep = sleep;
+		table->philos[i].m_eaten = -1;
+		if (argv[4])
+			table->philos[i].m_eaten = meals;
 	}
-}
-
-int	fill_table(t_table *table, char **argv)
-{
-	table->philo_n = check_nums(argv[0]);
-	if (table->philo_n == -1 || table->philo_n > 200)
-		return (print_error(E_NUM_P));
-	table->philos = not_ft_calloc(table->philo_n, sizeof(t_philo));
-	if (!table->philos)
-		return (print_error(E_MALLOC));
-	fill_philosophers(table, argv);
+	return (0);
 }
 
 int	check_args(char **argv)
@@ -86,7 +79,15 @@ int	table_init(t_table *table, char **argv)
 {
 	if (check_args(argv))
 		return (1);
-	if (fill_table(table, argv))
+	table->philo_n = check_nums(argv[0]);
+	if (table->philo_n == -1 || table->philo_n > 200)
+		return (print_error(E_NUM_P));
+	table->philos = not_ft_calloc(table->philo_n, sizeof(t_philo));
+	if (!table->philos)
+		return (print_error(E_MALLOC));
+	if (fill_philosophers(table, argv, -1))
+		return (1);
+	if (forks_init(table))
 		return (1);
 	return (0);
 }
