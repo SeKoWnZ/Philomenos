@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   get_n_set.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/02 13:16:10 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/06 19:16:11 by jose-gon         ###   ########.fr       */
+/*   Created: 2024/09/05 14:41:41 by jose-gon          #+#    #+#             */
+/*   Updated: 2024/09/06 18:45:25 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-int	main(int argc, char **argv)
+int	getter(pthread_mutex_t *mute, int *value)
 {
-	t_table		table;
+	int	ret;
 
-	if (argc == 5 || argc == 6)
-	{
-		if (table_init(&table, ++argv))
-			return (1);
-		//printtable(&table);
-		threads_creation(&table);
-		//clean_threads(&table, table.philo_n);
-		//routine_init(&table);
-		free(table.philos);
-	}
+	pthread_mutex_lock(mute);
+	ret = *value;
+	pthread_mutex_unlock(mute);
+	return (ret);
+}
+
+void	setter(t_table *table, pthread_mutex_t *mute, int val)
+{
+	pthread_mutex_lock(mute);
+	table->start = val;
+	pthread_mutex_unlock(mute);
 }

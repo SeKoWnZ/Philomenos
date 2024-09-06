@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:08:39 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/04 19:29:06 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/06 19:37:24 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	fill_philosophers(t_table *table, char **argv, int i)
 		table->philos[i].eat = eat;
 		table->philos[i].sleep = sleep;
 		table->philos[i].m_eaten = -1;
+		table->philos[i].table = table;
 		if (argv[4])
 			table->philos[i].m_eaten = meals;
 	}
@@ -82,9 +83,14 @@ int	table_init(t_table *table, char **argv)
 	table->philo_n = check_nums(argv[0]);
 	if (table->philo_n == -1 || table->philo_n > 200)
 		return (print_error(E_NUM_P));
+	table->start = 0;
 	table->philos = not_ft_calloc(table->philo_n, sizeof(t_philo));
 	if (!table->philos)
 		return (print_error(E_MALLOC));
+	if (pthread_mutex_init(&table->m_table, NULL))
+		return (print_error(E_MUTEX_INIT));
+	if (pthread_mutex_init(&table->m_print, NULL))
+		return (print_error(E_MUTEX_INIT));
 	if (fill_philosophers(table, argv, -1))
 		return (1);
 	if (forks_init(table))

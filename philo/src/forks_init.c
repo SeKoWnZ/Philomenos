@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 19:25:16 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/04 20:10:57 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/05 18:31:54 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ int	forks_init(t_table *table)
 	table->fork = not_ft_calloc(table->philo_n, sizeof(pthread_mutex_t));
 	if (!table->fork)
 		return (print_error(E_MALLOC));
+	while (++i < table->philo_n)
+		if (pthread_mutex_init(&table->fork[i], NULL))
+			return (print_error(E_MUTEX_INIT));
+	i = -1;
 	while (++i < table->philo_n - 1)
 	{
 		table->philos[i].l_fork = &table->fork[i];
