@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:08:39 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/06 19:37:24 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/09 18:16:20 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,32 @@
 //   philosophers have eaten at least number_of_times_each_philosopher_must_eat
 //   times, the simulation stops. If not specified, the simulation stops when a
 //   philosopher dies.
+
+int	timestamp_filo(t_table *table)
+{
+	int	i;
+
+	i = -1;
+	while (++i < table->philo_n)
+		table->philos[i].time = get_current_time();
+	return (0);
+}
+
+int	table_mutex_init(t_table *table)
+{
+	if (pthread_mutex_init(&table->m_dead, NULL))
+		return (print_error(E_MUTEX_INIT));
+	if (pthread_mutex_init(&table->m_print, NULL))
+		return (print_error(E_MUTEX_INIT));
+	return (0);
+}
+
+void	table_pointers(t_table *table, t_philo *philo)
+{
+	philo->m_dead = &table->m_dead;
+	philo->m_print = &table->m_print;
+	philo->dead_phil = &table->dead_phil;
+}
 
 int	check_nums(char *val)
 {
@@ -58,9 +84,9 @@ int	fill_philosophers(t_table *table, char **argv, int i)
 		table->philos[i].eat = eat;
 		table->philos[i].sleep = sleep;
 		table->philos[i].m_eaten = -1;
-		table->philos[i].table = table;
 		if (argv[4])
 			table->philos[i].m_eaten = meals;
+		table_pointers(table, &table->philos[i]);
 	}
 	return (0);
 }
@@ -84,14 +110,15 @@ int	table_init(t_table *table, char **argv)
 	if (table->philo_n == -1 || table->philo_n > 200)
 		return (print_error(E_NUM_P));
 	table->start = 0;
+	table->dead_phil = 0;
 	table->philos = not_ft_calloc(table->philo_n, sizeof(t_philo));
 	if (!table->philos)
 		return (print_error(E_MALLOC));
-	if (pthread_mutex_init(&table->m_table, NULL))
-		return (print_error(E_MUTEX_INIT));
-	if (pthread_mutex_init(&table->m_print, NULL))
-		return (print_error(E_MUTEX_INIT));
+	if (table_mutex_init(table))
+		return (1);
 	if (fill_philosophers(table, argv, -1))
+		return (1);
+	if (timestamp_filo(table))
 		return (1);
 	if (forks_init(table))
 		return (1);

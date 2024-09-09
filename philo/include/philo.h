@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 13:21:32 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/06 19:36:25 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/09 18:44:59 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include <limits.h>
 # include <string.h>
+# include <sys/time.h>
 
 typedef struct s_table t_table;
 
@@ -30,8 +31,11 @@ typedef struct s_philo
 	int				eat;
 	int				sleep;
 	int				m_eaten;
+	size_t			time;
+	int				*dead_phil;
 	pthread_t		pt;
-	t_table			*table;
+	pthread_mutex_t	*m_dead;
+	pthread_mutex_t	*m_print;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
 }					t_philo;
@@ -42,7 +46,7 @@ typedef struct s_table
 	int				start;
 	int				dead_phil;
 	t_philo			*philos;
-	pthread_mutex_t	m_table;
+	pthread_mutex_t	m_dead;
 	pthread_mutex_t	m_print;
 	pthread_mutex_t	*fork;
 }					t_table;
@@ -55,6 +59,12 @@ typedef struct s_table
 # define E_MALLOC "Error: Malloc memory problem!"
 # define E_MUTEX_INIT "Error: Mutex unable to init"
 # define E_THREAD "Error: Thread creation failed"
+# define E_TIME "Error: Get time failed"
+
+// ANOUNCEMENTS
+
+# define A_EAT "is eating"
+# define A_FORK "has taken a fork"
 
 // ROUTINES
 
@@ -64,6 +74,7 @@ void			*philosophize(void *argv);
 
 int				getter(pthread_mutex_t *mute, int *val);
 void			setter(t_table *table, pthread_mutex_t *mute, int val);
+size_t			get_current_time(void);
 
 // INIT FUNCTIONS
 
