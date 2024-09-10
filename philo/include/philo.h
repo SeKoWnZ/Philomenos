@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 13:21:32 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/09 18:44:59 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/10 14:56:01 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@
 # include <string.h>
 # include <sys/time.h>
 
-typedef struct s_table t_table;
-
 typedef struct s_philo
 {
 	int				id;
@@ -31,6 +29,7 @@ typedef struct s_philo
 	int				eat;
 	int				sleep;
 	int				m_eaten;
+	size_t			last_m;
 	size_t			time;
 	int				*dead_phil;
 	pthread_t		pt;
@@ -65,10 +64,15 @@ typedef struct s_table
 
 # define A_EAT "is eating"
 # define A_FORK "has taken a fork"
+# define A_SLEEP "is sleeping"
+# define A_THINK "is thinking"
+# define A_DEAD "died"
 
 // ROUTINES
 
 void			*philosophize(void *argv);
+void			print_queue(t_philo *philo, char *msg);
+int				precise_usleep(size_t ms);
 
 // CHECKS N GETS
 

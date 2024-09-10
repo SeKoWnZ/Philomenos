@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:08:39 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/09 18:16:20 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/10 14:28:33 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ int	timestamp_filo(t_table *table)
 
 	i = -1;
 	while (++i < table->philo_n)
+	{
 		table->philos[i].time = get_current_time();
+		table->philos[i].last_m = 0;
+	}
 	return (0);
 }
 
