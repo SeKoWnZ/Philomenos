@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 13:21:32 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/11 19:36:08 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/12 01:18:28 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_table
 void			*philosophize(void *argv);
 void			print_queue(t_philo *philo, char *msg);
 int				precise_usleep(size_t ms);
+int				wait_for_dead(t_philo *philo, size_t st, size_t ms);
 
 // CHECKS N GETS
 
@@ -101,5 +102,6 @@ void			*not_ft_calloc(size_t count, size_t size);
 // TEST
 
 void			printtable(t_table *table);
+void			print_val(t_philo *philo, size_t val, char *msg);
 
 #endif
