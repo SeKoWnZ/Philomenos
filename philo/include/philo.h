@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 13:21:32 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/10 14:56:01 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:36:08 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int				precise_usleep(size_t ms);
 // CHECKS N GETS
 
 int				getter(pthread_mutex_t *mute, int *val);
-void			setter(t_table *table, pthread_mutex_t *mute, int val);
+void			setter(pthread_mutex_t *mute, int *val, int new);
 size_t			get_current_time(void);
 
 // INIT FUNCTIONS

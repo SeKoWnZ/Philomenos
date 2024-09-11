@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:41:41 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/06 18:45:25 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/11 17:56:03 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	getter(pthread_mutex_t *mute, int *value)
 	return (ret);
 }
 
-void	setter(t_table *table, pthread_mutex_t *mute, int val)
+void	setter(pthread_mutex_t *mute, int *val, int new)
 {
 	pthread_mutex_lock(mute);
-	table->start = val;
+	*val = new;
 	pthread_mutex_unlock(mute);
 }
