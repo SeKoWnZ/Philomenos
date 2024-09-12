@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:26:34 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/12 01:22:26 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/12 18:56:00 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,15 @@ int	eat_routine(t_philo *philo)
 	print_queue(philo, A_FORK);
 	print_queue(philo, A_EAT);
 	if (wait_for_dead(philo, get_current_time() - philo->time, philo->eat))
+	{
+		pthread_mutex_unlock(philo->l_fork);
+		pthread_mutex_unlock(philo->r_fork);
 		return (1);
+	}
 	if (philo->m_eaten != -1)
 		philo->m_eaten--;
 	if (philo->m_eaten == 0)
 	{
-		setter(philo->m_dead, philo->dead_phil, 1);
 		pthread_mutex_unlock(philo->l_fork);
 		pthread_mutex_unlock(philo->r_fork);
 		return (1);
@@ -56,7 +59,7 @@ void	*philosophize(void *arg)
 
 	philo = arg;
 	if (philo->id % 2 == 0)
-		precise_usleep(2);
+		precise_usleep(1);
 	while (1)
 	{
 		if (getter(philo->m_dead, philo->dead_phil))

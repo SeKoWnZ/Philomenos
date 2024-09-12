@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:53:46 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/12 01:36:41 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/12 19:00:39 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,16 @@ int	die_anouncement(t_philo *philo, size_t t_todie)
 	precise_usleep(t_todie);
 	pthread_mutex_lock(philo->m_print);
 	pthread_mutex_lock(philo->m_dead);
-	setter(philo->m_dead, philo->dead_phil, 1);
+	if (*philo->dead_phil == 1)
+	{
+		pthread_mutex_unlock(philo->m_dead);
+		pthread_mutex_unlock(philo->m_print);
+		return (1);
+	}
+	*philo->dead_phil = 1;
 	time = get_current_time();
 	printf("%ld %d %s\n", time - philo->time, philo->id, A_DEAD);
 	pthread_mutex_unlock(philo->m_dead);
-	pthread_mutex_unlock(philo->l_fork);
-	pthread_mutex_unlock(philo->r_fork);
 	pthread_mutex_unlock(philo->m_print);
 	return (1);
 }
@@ -48,12 +52,10 @@ int	wait_for_dead(t_philo *philo, size_t st, size_t ms)
 	{
 		if (getter(philo->m_dead, philo->dead_phil))
 			return (1);
-		precise_usleep(1);
+		precise_usleep(5);
 		end = get_current_time() - philo->time;
 		el_time = end - st;
-		print_val(philo, el_time, "oooooo");
-		d_time = im_gona_die(el_time, get_current_time() - philo->last_m);
-		print_val(philo, d_time, "<---------");
+		d_time = im_gona_die((get_current_time() - philo->last_m), philo->die);
 		if (d_time)
 			return (die_anouncement(philo, d_time));
 	}
