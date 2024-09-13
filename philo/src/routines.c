@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:26:34 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/12 18:56:00 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:09:13 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	*philosophize(void *arg)
 			return (NULL);
 		if (eat_routine(philo))
 			return (NULL);
-		if (getter(philo->m_dead, philo->dead_phil))
-			return (NULL);
+		// if (getter(philo->m_dead, philo->dead_phil))
+		// 	return (NULL);
 		if (sleep_routine(philo))
 			return (NULL);
 		think_routine(philo);

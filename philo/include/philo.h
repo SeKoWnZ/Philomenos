@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 13:21:32 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/12 01:18:28 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:27:09 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_table
 # define E_NUM_RANGE "Error: Invalid numeric input range"
 # define E_MALLOC "Error: Malloc memory problem!"
 # define E_MUTEX_INIT "Error: Mutex unable to init"
+# define E_MUTEX_DES "Error: Destroying mutex"
 # define E_THREAD "Error: Thread creation failed"
 # define E_TIME "Error: Get time failed"
 

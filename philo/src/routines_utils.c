@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:53:46 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/12 19:00:39 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:11:10 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	wait_for_dead(t_philo *philo, size_t st, size_t ms)
 	{
 		if (getter(philo->m_dead, philo->dead_phil))
 			return (1);
-		precise_usleep(5);
+		precise_usleep(4);
 		end = get_current_time() - philo->time;
 		el_time = end - st;
 		d_time = im_gona_die((get_current_time() - philo->last_m), philo->die);
