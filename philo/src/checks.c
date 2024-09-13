@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/03 12:42:06 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/13 17:00:58 by jose-gon         ###   ########.fr       */
+/*   Created: 2024/09/13 14:25:53 by jose-gon          #+#    #+#             */
+/*   Updated: 2024/09/13 14:26:56 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-void	not_putstr_fd(char *s, int fd)
+int	check_args(char **argv)
 {
-	write(fd, s, not_ft_strlen(s));
+	int	i;
+
+	i = -1;
+	while (argv[++i])
+		if (str_isdigit(argv[i]))
+			return (print_error(E_NUM));
+	return (0);
 }
 
-int	print_error(char *error)
+int	check_nums(char *val)
 {
-	not_putstr_fd(error, 2);
-	write(2, "\n", 1);
-	return (1);
-}
+	int	num;
 
-void	clean_threads(t_table *table, int i)
-{
-	while (i >= 0)
-	{
-		pthread_cancel(table->philos[i].pt);
-		pthread_join(table->philos[i].pt, NULL);
-		i--;
-	}
+	num = not_ft_atol(val);
+	if (num < 0 || num > INT_MAX)
+		num = -1;
+	return ((int)num);
 }

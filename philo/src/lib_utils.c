@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 17:59:39 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/04 16:03:17 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:37:30 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ int	str_isdigit(char *str)
 		return (1);
 	while (*str)
 	{
-		if (*str < '0' && *str > '9')
+		if (*str < '0' || *str > '9')
 			return (*str);
 		str++;
 	}
 	return (0);
 }
 
-int	not_ft_strlen(const	char *s)
+int	not_ft_strlen(const char *s)
 {
 	int	i;
 

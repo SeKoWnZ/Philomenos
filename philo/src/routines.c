@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:26:34 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/13 12:09:13 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:48:35 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,25 +51,4 @@ int	think_routine(t_philo *philo)
 {
 	print_queue(philo, A_THINK);
 	return (0);
-}
-
-void	*philosophize(void *arg)
-{
-	t_philo	*philo;
-
-	philo = arg;
-	if (philo->id % 2 == 0)
-		precise_usleep(1);
-	while (1)
-	{
-		if (getter(philo->m_dead, philo->dead_phil))
-			return (NULL);
-		if (eat_routine(philo))
-			return (NULL);
-		// if (getter(philo->m_dead, philo->dead_phil))
-		// 	return (NULL);
-		if (sleep_routine(philo))
-			return (NULL);
-		think_routine(philo);
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 13:21:32 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/13 12:27:09 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/13 17:25:22 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ typedef struct s_table
 
 // ROUTINES
 
+int				eat_routine(t_philo *philo);
+int				sleep_routine(t_philo *philo);
+int				think_routine(t_philo *philo);
 void			*philosophize(void *argv);
 void			print_queue(t_philo *philo, char *msg);
 int				precise_usleep(size_t ms);
@@ -84,7 +87,7 @@ size_t			get_current_time(void);
 
 // INIT FUNCTIONS
 
-int				threads_creation(t_table *table);
+int				routine_init(t_table *table);
 int				table_init(t_table *table, char **argv);
 int				forks_init(t_table *table);
 
@@ -97,12 +100,9 @@ int				print_error(char *error);
 
 int				str_isdigit(char *str);
 int				not_ft_strlen(const char *s);
+int				check_args(char **argv);
+int				check_nums(char *val);
 long			not_ft_atol(const char *str);
 void			*not_ft_calloc(size_t count, size_t size);
-
-// TEST
-
-void			printtable(t_table *table);
-void			print_val(t_philo *philo, size_t val, char *msg);
 
 #endif
