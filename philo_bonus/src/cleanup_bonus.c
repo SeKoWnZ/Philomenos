@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checks.c                                           :+:      :+:    :+:   */
+/*   cleanup_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 14:25:53 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/15 20:55:50 by jose-gon         ###   ########.fr       */
+/*   Created: 2024/09/16 00:20:30 by jose-gon          #+#    #+#             */
+/*   Updated: 2024/09/16 01:33:51 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include <philo_bonus.h>
 
-int	check_args(char **argv)
+void	cleanup(t_philo *philo)
 {
-	int	i;
+	t_table *tmp;
+	int		i;
 
 	i = -1;
-	while (argv[++i])
-		if (str_isdigit(argv[i]))
-			return (print_error(E_NUM));
-	return (0);
+	tmp = philo->table;
+	while (++i < tmp->philo_n)
+		free(tmp->philo[i]);
+	free(tmp->philo);
+	free(tmp);
 }
 
-int	check_nums(char *val)
+void	wait_to_end(t_table *table)
 {
-	long	num;
+	int	i;
+	int	status;
 
-	num = not_ft_atol(val);
-	if (num < 0 || num > INT_MAX)
-		num = -1;
-	return ((int)num);
+	i = -1;
+	waitpid(0, &status, 0);
+	if (WIFEXITED(status) == 1)
+	{
+		while (++i > table->philo_n)
+			kill(table->philo[i]->philo_pid, SIGKILL);
+	}
 }

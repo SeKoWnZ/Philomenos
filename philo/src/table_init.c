@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:08:39 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/13 14:26:40 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/15 17:57:11 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int	table_init(t_table *table, char **argv)
 	table->philo_n = check_nums(argv[0]);
 	if (table->philo_n == -1 || table->philo_n > 200)
 		return (print_error(E_NUM_P));
-	table->start = 0;
 	table->dead_phil = 0;
 	table->philos = not_ft_calloc(table->philo_n, sizeof(t_philo));
 	if (!table->philos)

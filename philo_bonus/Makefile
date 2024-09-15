@@ -1,16 +1,4 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/09/16 01:11:00 by jose-gon          #+#    #+#              #
-#    Updated: 2024/09/16 01:12:10 by jose-gon         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-NAME = philo
+NAME = philo_bonus
 
 CFLAGS = -g -Wall -Wextra -Werror -pthread #-fsanitize=address
 IFLAG = -I./include
@@ -18,8 +6,9 @@ IFLAG = -I./include
 SRC_DIR = src
 OBJ_DIR = obj
 
-FILES = philo.c table_init.c forks_init.c routine_init.c \
-routines_utils.c routines_utils2.c lib_utils.c get_n_set.c error.c checks.c
+FILES = philo_bonus.c table_init_bonus.c checks_bonus.c routine_init_bonus.c \
+die_protocol_bonus.c philo_utils_bonus.c lib_utils_bonus.c error_bonus.c \
+cleanup_bonus.c
 
 OBJ_FILES = $(addprefix $(OBJ_DIR)/, $(FILES:.c=.o))
 
@@ -37,13 +26,13 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	gcc $(CFLAGS) $(IFLAG) -c $< -o $@
 
 ascii_art:
-	@echo "$(RED)░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░      ░▒▓██████▓▒░  "
+	@echo "$(GREEN)░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░      ░▒▓██████▓▒░  "
 	@echo "░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░ "
 	@echo "░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░ "
 	@echo "░▒▓███████▓▒░░▒▓████████▓▒░▒▓█▓▒░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░ "
 	@echo "░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░ "
 	@echo "░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░ "
-	@echo "░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓████████▓▒░▒▓██████▓▒░  $(DEF_COLOR)"
+	@echo "░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒BONUS▒░▒▓████████▓▒░▒▓██████▓▒░  $(DEF_COLOR)"
 
 clean:
 	rm -rf $(OBJ_DIR)

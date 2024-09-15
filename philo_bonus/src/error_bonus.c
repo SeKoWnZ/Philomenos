@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checks.c                                           :+:      :+:    :+:   */
+/*   error_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 14:25:53 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/15 20:55:50 by jose-gon         ###   ########.fr       */
+/*   Created: 2024/09/15 20:09:39 by jose-gon          #+#    #+#             */
+/*   Updated: 2024/09/16 01:39:05 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include <philo_bonus.h>
 
-int	check_args(char **argv)
+void	not_putstr_fd(char *s, int fd)
+{
+	write(fd, s, not_ft_strlen(s));
+}
+
+int	print_error(char *error)
+{
+	not_putstr_fd(error, 2);
+	write(2, "\n", 1);
+	return (1);
+}
+
+int	error_philos(t_table *table, int num)
 {
 	int	i;
 
 	i = -1;
-	while (argv[++i])
-		if (str_isdigit(argv[i]))
-			return (print_error(E_NUM));
-	return (0);
-}
-
-int	check_nums(char *val)
-{
-	long	num;
-
-	num = not_ft_atol(val);
-	if (num < 0 || num > INT_MAX)
-		num = -1;
-	return ((int)num);
+	while (num > ++i)
+		free(table->philo[i]);
+	free(table->philo);
+	return (print_error(E_MALLOC));
 }

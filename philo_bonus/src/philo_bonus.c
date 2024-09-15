@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checks.c                                           :+:      :+:    :+:   */
+/*   philo_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/13 14:25:53 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/15 20:55:50 by jose-gon         ###   ########.fr       */
+/*   Created: 2024/09/15 12:41:18 by jose-gon          #+#    #+#             */
+/*   Updated: 2024/09/16 01:19:21 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include <philo_bonus.h>
 
-int	check_args(char **argv)
+int	main(int argc, char **argv)
 {
-	int	i;
-
-	i = -1;
-	while (argv[++i])
-		if (str_isdigit(argv[i]))
-			return (print_error(E_NUM));
-	return (0);
-}
-
-int	check_nums(char *val)
-{
-	long	num;
-
-	num = not_ft_atol(val);
-	if (num < 0 || num > INT_MAX)
-		num = -1;
-	return ((int)num);
+	t_table	*table;
+	
+	table = NULL;
+	if (argc == 5 || argc == 6)
+	{
+		if (table_init(table, ++argv))
+			return (1);
+		if (routine_init(table))
+			return (1);
+	}
 }

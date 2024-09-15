@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 13:21:32 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/13 17:25:22 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/15 17:57:19 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct s_philo
 typedef struct s_table
 {
 	int				philo_n;
-	int				start;
 	int				dead_phil;
 	t_philo			*philos;
 	pthread_mutex_t	m_dead;
