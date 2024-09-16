@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 13:21:32 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/15 17:57:19 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/16 19:22:45 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ typedef struct s_table
 
 int				eat_routine(t_philo *philo);
 int				sleep_routine(t_philo *philo);
-int				think_routine(t_philo *philo);
 void			*philosophize(void *argv);
 void			print_queue(t_philo *philo, char *msg);
 int				precise_usleep(size_t ms);
