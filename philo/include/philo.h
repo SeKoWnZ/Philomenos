@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 13:21:32 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/16 19:22:45 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/16 23:36:05 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_table
 # define E_MUTEX_DES "Error: Destroying mutex"
 # define E_THREAD "Error: Thread creation failed"
 # define E_TIME "Error: Get time failed"
+# define E_BAD_ARGS "Error: Bad number of args"
 
 // ANOUNCEMENTS
 
@@ -76,6 +77,7 @@ void			*philosophize(void *argv);
 void			print_queue(t_philo *philo, char *msg);
 int				precise_usleep(size_t ms);
 int				wait_for_dead(t_philo *philo, size_t st, size_t ms);
+int				die_anouncement(t_philo *philo, size_t t_todie);
 
 // CHECKS N GETS
 

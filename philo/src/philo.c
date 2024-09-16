@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 13:16:10 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/13 14:47:15 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/16 23:44:05 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	armageddon(t_table *table)
 		print_error(E_MUTEX_DES);
 	if (pthread_mutex_destroy(&table->m_print))
 		print_error(E_MUTEX_DES);
-	i = table->philo_n + 1;
-	while (--i >= 0)
+	i = -1;
+	while (++i < table->philo_n)
 	{
 		if (pthread_mutex_destroy(&table->fork[i]) != 0)
 			print_error(E_MUTEX_DES);
@@ -44,4 +44,6 @@ int	main(int argc, char **argv)
 		if (armageddon(&table))
 			return (1);
 	}
+	else
+		print_error(E_BAD_ARGS);
 }

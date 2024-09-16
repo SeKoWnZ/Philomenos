@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 14:53:46 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/16 01:09:38 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/16 22:58:03 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	wait_for_dead(t_philo *philo, size_t st, size_t ms)
 
 	end = get_current_time() - philo->time;
 	el_time = end - st;
-	while (el_time <= ms)
+	while (el_time < ms)
 	{
 		if (getter(philo->m_dead, philo->dead_phil))
 			return (1);

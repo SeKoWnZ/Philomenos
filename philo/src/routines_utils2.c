@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routines_utils2..c                                 :+:      :+:    :+:   */
+/*   routines_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:26:34 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/16 01:10:14 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/16 22:47:25 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	precise_usleep(size_t ms)
 
 	start = get_current_time();
 	while ((get_current_time() - start) < ms)
-		usleep(20);
+		usleep(50);
 	return (0);
 }
 

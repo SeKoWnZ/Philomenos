@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 17:44:25 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/16 01:20:24 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/17 00:30:52 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,22 @@ int	philo_init(t_table *table, char **argv)
 	return (0);
 }
 
-int	table_init(t_table *table, char **argv)
+int	table_init(t_table **table, char **argv)
 {
 	if (check_args(argv))
 		return (1);
-	table = not_ft_calloc(1, sizeof(t_table));
-	if (!table)
+	*table = not_ft_calloc(1, sizeof(t_table));
+	if (!*table)
 		return (1);
-	table->philo_n = (int)check_nums(argv[0]);
-	if (table->philo_n == -1 || table->philo_n > 200)
+	(*table)->philo_n = (int)check_nums(argv[0]);
+	if ((*table)->philo_n == -1 || (*table)->philo_n > 200)
 	{
-		free(table);
+		free((*table));
 		return (print_error(E_NUM_P));
 	}
-	if (philo_init(table, argv))
+	if (philo_init((*table), argv))
 	{
-		free(table);
+		free((*table));
 		return (1);
 	}
 	return (0);

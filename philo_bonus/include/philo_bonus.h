@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 12:41:35 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/16 01:39:19 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/17 00:31:40 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ long	check_nums(char *val);
 
 // INIT
 
-int		table_init(t_table *table, char **argv);
+int		table_init(t_table **table, char **argv);
 int		routine_init(t_table *table);
 
 // ROUTINE

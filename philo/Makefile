@@ -6,13 +6,13 @@
 #    By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/16 01:11:00 by jose-gon          #+#    #+#              #
-#    Updated: 2024/09/16 19:13:47 by jose-gon         ###   ########.fr        #
+#    Updated: 2024/09/16 22:53:06 by jose-gon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-CFLAGS = -g -Wall -Wextra -Werror -pthread -fsanitize=address
+CFLAGS = -g -Wall -Wextra -Werror -pthread #-fsanitize=address
 IFLAG = -I./include
 
 SRC_DIR = src
