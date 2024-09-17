@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 00:51:53 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/17 01:03:07 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/17 02:24:17 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	routine_init(t_table *table)
 			cleanup(table->philo[i]);
 			exit(0);
 		}
-		usleep(50);
+		usleep(500);
 	}
 	wait_to_end(table);
 	return (0);

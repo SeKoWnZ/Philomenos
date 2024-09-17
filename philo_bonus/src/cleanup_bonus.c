@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 00:20:30 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/17 01:17:32 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/17 02:28:25 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ void	wait_to_end(t_table *table)
 		waitpid(-1, &status, 0);
 		if (WEXITSTATUS(status) == 1)
 		{
-			while (++i > table->philo_n)
+			while (++i < table->philo_n)
+			{
+				printf("WHATFAAAAK\n");
 				kill(table->philo[i]->philo_pid, SIGKILL);
+			}
 		}
 		else if (WEXITSTATUS(status) == 0)
 			printf("PATATA\n");
