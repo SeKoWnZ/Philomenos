@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 00:51:53 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/17 02:24:17 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:11:31 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int	routine_init(t_table *table)
 		if (table->philo[i]->philo_pid == 0)
 		{
 			start_routine(table->philo[i]);
+			sem_close(table->sem_forks);
+			sem_close(table->sem_print);
 			cleanup(table->philo[i]);
 			exit(0);
 		}

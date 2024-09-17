@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 12:41:18 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/17 00:37:33 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:35:29 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	main(int argc, char **argv)
 			return (1);
 		if (routine_init(table))
 			return (1);
+		sem_close(table->sem_forks);
+		sem_close(table->sem_print);
 		cleanup(table->philo[0]);
 	}
 }
