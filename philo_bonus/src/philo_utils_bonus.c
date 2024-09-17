@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 22:37:49 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/17 17:20:12 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/17 23:31:46 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	p_fork(void)
 
 	pid = fork();
 	if (pid == -1)
-		return (-1);
+		exit(print_error(E_FORK));
 	return (pid);
 }
 
@@ -45,8 +45,8 @@ void	print_queue(t_philo *philo, char *msg)
 {
 	size_t	time;
 
-	time = get_current_time();
 	sem_wait(philo->sem_print);
+	time = get_current_time();
 	printf("%ld %d %s\n", time - philo->time, philo->id, msg);
 	sem_post(philo->sem_print);
 }

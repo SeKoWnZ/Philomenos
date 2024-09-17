@@ -7,8 +7,8 @@ SRC_DIR = src
 OBJ_DIR = obj
 
 FILES = philo_bonus.c table_init_bonus.c checks_bonus.c routine_init_bonus.c \
-die_protocol_bonus.c philo_utils_bonus.c lib_utils_bonus.c error_bonus.c \
-cleanup_bonus.c
+routines_bonus.c die_protocol_bonus.c philo_utils_bonus.c lib_utils_bonus.c \
+error_bonus.c cleanup_bonus.c
 
 OBJ_FILES = $(addprefix $(OBJ_DIR)/, $(FILES:.c=.o))
 

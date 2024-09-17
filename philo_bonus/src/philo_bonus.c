@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 12:41:18 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/17 15:35:29 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/17 22:57:01 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_table	*table;
-	
+
 	table = NULL;
 	if (argc == 5 || argc == 6)
 	{
@@ -23,8 +23,8 @@ int	main(int argc, char **argv)
 			return (1);
 		if (routine_init(table))
 			return (1);
-		sem_close(table->sem_forks);
-		sem_close(table->sem_print);
-		cleanup(table->philo[0]);
+		cleanup(table);
 	}
+	else
+		print_error(E_BAD_ARGS);
 }

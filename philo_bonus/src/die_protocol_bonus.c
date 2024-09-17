@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 23:59:43 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/17 17:42:50 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/17 22:53:33 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	die_anouncement(t_philo *philo, size_t t_todie)
 	sem_wait(philo->sem_print);
 	time = get_current_time();
 	printf("%ld %d %s\n", time - philo->time, philo->id, A_DEAD);
-	sem_post(philo->sem_print);
 	return (1);
 }
 
@@ -44,7 +43,8 @@ int	wait_for_dead(t_philo *philo, size_t st, size_t ms)
 		precise_usleep(1);
 		end = get_current_time() - philo->time;
 		el_time = end - st;
-		d_time = im_gona_die((get_current_time() - philo->last_m), philo->t_dead);
+		d_time = im_gona_die((get_current_time()
+					- philo->last_m), philo->t_dead);
 		if (d_time)
 			return (die_anouncement(philo, d_time));
 	}

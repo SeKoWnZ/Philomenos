@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 12:41:35 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/17 00:31:40 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/17 23:29:07 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <unistd.h>
 # include <semaphore.h>
 
-typedef struct s_table t_table;
+typedef struct s_table	t_table;
 
 typedef struct s_philo
 {
@@ -56,8 +56,9 @@ typedef struct s_table
 # define E_NUM_RANGE "Error: Invalid numeric input range"
 # define E_MALLOC "Error: Malloc memory problem!"
 # define E_SEM_INIT "Error: Semaphore unable to init"
-# define E_MUTEX_DES "Error: Destroying mutex"
 # define E_TIME "Error: Get time failed"
+# define E_BAD_ARGS "Error: Bad number of args"
+# define E_FORK "Error: Fork creation fail!"
 
 // ANOUNCEMENTS
 
@@ -79,6 +80,8 @@ int		routine_init(t_table *table);
 
 // ROUTINE
 
+int		sleep_routine(t_philo *philo);
+int		eat_routine(t_philo *philo);
 int		die_anouncement(t_philo *philo, size_t t_todie);
 void	wait_to_end(t_table *table);
 int		precise_usleep(size_t ms);
@@ -95,7 +98,8 @@ int		not_ft_strlen(const char *s);
 size_t	get_current_time(void);
 void	print_queue(t_philo *philo, char *msg);
 int		wait_for_dead(t_philo *philo, size_t st, size_t ms);
-void	cleanup(t_philo *philo);
+void	cleanup(t_table *table);
+int		p_fork(void);
 
 // ERROR
 

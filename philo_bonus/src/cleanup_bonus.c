@@ -6,19 +6,21 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 00:20:30 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/17 19:22:58 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/09/17 22:52:17 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo_bonus.h>
 
-void	cleanup(t_philo *philo)
+void	cleanup(t_table *table)
 {
-	t_table *tmp;
+	t_table	*tmp;
 	int		i;
 
 	i = -1;
-	tmp = philo->table;
+	tmp = table;
+	sem_close(tmp->sem_forks);
+	sem_close(tmp->sem_print);
 	while (++i < tmp->philo_n)
 		free(tmp->philo[i]);
 	free(tmp->philo);
@@ -28,7 +30,7 @@ void	cleanup(t_philo *philo)
 void	wait_to_end(t_table *table)
 {
 	int	i;
-	int j;
+	int	j;
 	int	status;
 
 	i = -1;
@@ -38,10 +40,8 @@ void	wait_to_end(t_table *table)
 		waitpid(0, &status, 0);
 		if (WEXITSTATUS(status) == 1)
 		{
-			sem_wait(table->sem_print);
 			while (++i < table->philo_n)
 				kill(table->philo[i]->philo_pid, SIGKILL);
-			sem_post(table->sem_print);
 		}
 	}
 }
