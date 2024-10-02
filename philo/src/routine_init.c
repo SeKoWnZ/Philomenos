@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:14:34 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/16 23:54:13 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:24:47 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ int	routine_init(t_table *table)
 
 	i = -1;
 	if (table->philo_n == 1)
+	{
+		print_queue(&table->philos[0], A_FORK);
 		die_anouncement(&table->philos[0], table->philos[0].die);
+	}
 	while (++i < table->philo_n)
 	{
 		if (pthread_create(&table->philos[i].pt, NULL, philosophize,

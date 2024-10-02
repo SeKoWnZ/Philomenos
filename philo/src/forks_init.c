@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 19:25:16 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/17 23:33:40 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/02 17:36:05 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	forks_init(t_table *table)
 	i = -1;
 	while (++i < table->philo_n)
 	{
-		if (table->philos[i].id % 2 == 0)
+		if (i % 2 == 0)
 		{
 			table->philos[i].l_fork = &table->fork[i];
 			table->philos[i].r_fork = &table->fork[(i + 1) % num];
