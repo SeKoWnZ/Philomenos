@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 19:25:16 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/10/02 17:36:05 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/03 13:36:38 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,14 @@ int	create_forks(t_table *table)
 	if (!table->fork)
 		return (print_error(E_MALLOC));
 	while (++i < table->philo_n)
+	{
 		if (pthread_mutex_init(&table->fork[i], NULL))
-			return (print_error(E_MUTEX_INIT));
+		{
+			while (i >= 0)
+				pthread_mutex_destroy(&table->fork[i]);
+			return (free(table->fork), print_error(E_MUTEX_INIT));
+		}
+	}
 	return (0);
 }
 

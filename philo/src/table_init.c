@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 16:08:39 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/15 17:57:11 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/03 13:42:42 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,12 @@ int	table_init(t_table *table, char **argv)
 	if (!table->philos)
 		return (print_error(E_MALLOC));
 	if (table_mutex_init(table))
-		return (1);
+		return (free(table->philos), 1);
 	if (fill_philosophers(table, argv, -1))
-		return (1);
+		return (free(table->philos), 1);
 	if (timestamp_filo(table))
-		return (1);
+		return (free(table->philos), 1);
 	if (forks_init(table))
-		return (1);
+		return (free(table->philos), 1);
 	return (0);
 }
