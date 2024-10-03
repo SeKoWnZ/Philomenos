@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:14:34 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/10/02 18:24:47 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/03 20:05:02 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 int	eat_routine(t_philo *philo)
 {
+	im_gona_die((get_current_time() - philo->last_m), philo->die, philo);
 	pthread_mutex_lock(philo->l_fork);
 	print_queue(philo, A_FORK);
+	im_gona_die((get_current_time() - philo->last_m), philo->die, philo);
 	pthread_mutex_lock(philo->r_fork);
 	print_queue(philo, A_FORK);
 	print_queue(philo, A_EAT);
+	philo->last_m = get_current_time();
 	if (wait_for_dead(philo, get_current_time() - philo->time, philo->eat))
 	{
 		pthread_mutex_unlock(philo->l_fork);
@@ -33,7 +36,6 @@ int	eat_routine(t_philo *philo)
 		pthread_mutex_unlock(philo->r_fork);
 		return (1);
 	}
-	philo->last_m = get_current_time();
 	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
 	return (0);
