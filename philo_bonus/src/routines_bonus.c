@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 23:27:32 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/10/03 20:24:26 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/05 20:56:35 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ int	eat_routine(t_philo *philo)
 {
 	im_gona_die((get_current_time() - philo->last_m), philo->t_dead, philo);
 	sem_wait(philo->sem_forks);
-	print_queue(philo, A_FORK);
 	im_gona_die((get_current_time() - philo->last_m), philo->t_dead, philo);
+	print_queue(philo, A_FORK);
 	sem_wait(philo->sem_forks);
+	im_gona_die((get_current_time() - philo->last_m), philo->t_dead, philo);
 	print_queue(philo, A_FORK);
 	print_queue(philo, A_EAT);
 	philo->last_m = get_current_time();
