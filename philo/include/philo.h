@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 13:21:32 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/10/06 02:52:03 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/06 22:14:57 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_table
 # define E_MUTEX_INIT "Error: Mutex unable to init"
 # define E_MUTEX_DES "Error: Destroying mutex"
 # define E_THREAD "Error: Thread creation failed"
+# define E_JOIN "Error: Thread join failed"
 # define E_TIME "Error: Get time failed"
 # define E_BAD_ARGS "Error: Bad number of args"
 
@@ -82,13 +83,15 @@ typedef struct s_table
 
 int				eat_routine(t_philo *philo);
 int				sleep_routine(t_philo *philo);
+int				precise_usleep(size_t ms);
+int				wait_for_dead(t_philo *philo, size_t st, size_t ms);
+int				he_gona_die(size_t duration, t_table *obser, int i);
+void			*solo_routine(void *arg);
 void			*philosophize(void *argv);
 void			*watch_philos(void *arg);
 void			print_queue(t_philo *philo, char *msg);
-int				precise_usleep(size_t ms);
-int				wait_for_dead(t_philo *philo, size_t st, size_t ms);
+void			unlock_forks(t_philo *philo);
 void			die_anouncement(t_table *obser, int i, size_t t_todie);
-int				he_gona_die(size_t duration, t_table *obser, int i);
 
 // CHECKS N GETS
 
@@ -109,6 +112,7 @@ int				timestamp_filo(t_table *table);
 
 void			clean_threads(t_table *table, int i);
 int				print_error(char *error);
+int				safe_join(t_table *table, int *i);
 
 // LIB UTILS
 

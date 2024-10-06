@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 12:42:06 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/13 17:00:58 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/06 22:09:22 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,16 @@ void	clean_threads(t_table *table, int i)
 		pthread_join(table->philos[i].pt, NULL);
 		i--;
 	}
+}
+
+int	safe_join(t_table *table, int *i)
+{
+	while (--(*i) >= 0)
+	{
+		if (pthread_join(table->philos[*i].pt, NULL))
+			return (1);
+	}
+	if (pthread_join(table->pt, NULL))
+		return (1);
+	return (0);
 }

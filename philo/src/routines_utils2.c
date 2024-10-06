@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:26:34 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/16 22:47:25 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/06 21:42:39 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,10 @@ void	print_queue(t_philo *philo, char *msg)
 	if (!getter(philo->m_dead, philo->dead_phil))
 		printf("%ld %d %s\n", time - philo->time, philo->id, msg);
 	pthread_mutex_unlock(philo->m_print);
+}
+
+void	unlock_forks(t_philo *philo)
+{
+	pthread_mutex_unlock(philo->l_fork);
+	pthread_mutex_unlock(philo->r_fork);
 }
