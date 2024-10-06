@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 00:51:53 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/17 23:32:09 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/06 19:44:29 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	start_routine(t_philo *philo)
 {
 	while (1)
 	{
+		if (philo->id % 2 == 0)
+			usleep(50);
 		if (eat_routine(philo))
 			break ;
 		sleep_routine(philo);

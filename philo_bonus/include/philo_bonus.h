@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 12:41:35 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/10/06 12:47:11 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/06 19:39:18 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ size_t	get_current_time(void);
 void	print_queue(t_philo *philo, char *msg);
 int		wait_for_dead(t_philo *philo, size_t st, size_t ms);
 void	cleanup(t_table *table);
+void	cleanup_n_exit(t_philo *philo);
 int		p_fork(void);
 
 // ERROR

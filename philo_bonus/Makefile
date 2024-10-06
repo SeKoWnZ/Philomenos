@@ -1,6 +1,6 @@
 NAME = philo_bonus
 
-CFLAGS = -g -Wall -Wextra -Werror -pthread #-fsanitize=address
+CFLAGS = -g -Wall -Wextra -Werror -pthread #-fsanitize=thread
 IFLAG = -I./include
 
 SRC_DIR = src
