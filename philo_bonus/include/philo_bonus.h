@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 12:41:35 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/10/03 20:16:25 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/05 22:02:45 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int		eat_routine(t_philo *philo);
 int		die_anouncement(t_philo *philo, size_t t_todie);
 void	wait_to_end(t_table *table);
 int		precise_usleep(size_t ms);
-size_t	im_gona_die(size_t duration, size_t t_val, t_philo *philo);
+size_t	im_gona_die(size_t duration, size_t t_val, int i);
 
 // NOT LIB
 

@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 13:21:32 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/10/03 20:02:32 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/06 02:52:03 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,15 @@ typedef struct s_philo
 	int				die;
 	int				eat;
 	int				sleep;
-	int				m_eaten;
 	size_t			last_m;
 	size_t			time;
+	int				meals;
 	int				*dead_phil;
 	pthread_t		pt;
 	pthread_mutex_t	*m_dead;
 	pthread_mutex_t	*m_print;
+	pthread_mutex_t	*m_meal;
+	pthread_mutex_t	*m_full;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
 }					t_philo;
@@ -43,9 +45,16 @@ typedef struct s_table
 {
 	int				philo_n;
 	int				dead_phil;
+	int				die;
+	int				eat;
+	int				sleep;
+	size_t			time;
 	t_philo			*philos;
+	pthread_t		pt;
 	pthread_mutex_t	m_dead;
 	pthread_mutex_t	m_print;
+	pthread_mutex_t	m_meal;
+	pthread_mutex_t	m_full;
 	pthread_mutex_t	*fork;
 }					t_table;
 
@@ -74,16 +83,19 @@ typedef struct s_table
 int				eat_routine(t_philo *philo);
 int				sleep_routine(t_philo *philo);
 void			*philosophize(void *argv);
+void			*watch_philos(void *arg);
 void			print_queue(t_philo *philo, char *msg);
 int				precise_usleep(size_t ms);
 int				wait_for_dead(t_philo *philo, size_t st, size_t ms);
-int				die_anouncement(t_philo *philo, size_t t_todie);
-size_t			im_gona_die(size_t duration, size_t t_val, t_philo *philo);
+void			die_anouncement(t_table *obser, int i, size_t t_todie);
+int				he_gona_die(size_t duration, t_table *obser, int i);
 
 // CHECKS N GETS
 
 int				getter(pthread_mutex_t *mute, int *val);
 void			setter(pthread_mutex_t *mute, int *val, int new);
+size_t			getter_long(pthread_mutex_t *mute, size_t *value);
+void			setter_long(pthread_mutex_t *mute, size_t *val, size_t new);
 size_t			get_current_time(void);
 
 // INIT FUNCTIONS
@@ -91,6 +103,7 @@ size_t			get_current_time(void);
 int				routine_init(t_table *table);
 int				table_init(t_table *table, char **argv);
 int				forks_init(t_table *table);
+int				timestamp_filo(t_table *table);
 
 // ERROR HANDLE
 
