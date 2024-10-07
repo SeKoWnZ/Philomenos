@@ -6,11 +6,17 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 00:20:30 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/17 22:52:17 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/06 19:38:53 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo_bonus.h>
+
+void	cleanup_n_exit(t_philo *philo)
+{
+	cleanup(philo->table);
+	exit(1);
+}
 
 void	cleanup(t_table *table)
 {

@@ -6,7 +6,7 @@
 #    By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/16 01:11:00 by jose-gon          #+#    #+#              #
-#    Updated: 2024/10/02 18:06:51 by jose-gon         ###   ########.fr        #
+#    Updated: 2024/10/07 17:01:27 by jose-gon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ IFLAG = -I./include
 SRC_DIR = src
 OBJ_DIR = obj
 
-FILES = philo.c table_init.c forks_init.c routine_init.c \
-routines_utils.c routines_utils2.c lib_utils.c get_n_set.c error.c checks.c
+FILES = philo.c table_init.c forks_init.c routine_init.c routines.c routine_ob.c\
+routines_utils.c routines_utils2.c lib_utils.c get_n_set.c error.c checks.c \
 
 OBJ_FILES = $(addprefix $(OBJ_DIR)/, $(FILES:.c=.o))
 
