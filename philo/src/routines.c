@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 22:13:10 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/10/06 22:13:28 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:47:55 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,9 @@ void	*philosophize(void *arg)
 	t_philo	*philo;
 
 	philo = arg;
-	if (philo->id % 2 == 0)
-		precise_usleep(2);
 	while (1)
 	{
-		if (philo->id % 2 == 0)
+		if (philo->id % 2 != 0)
 			usleep(50);
 		if (getter(philo->m_dead, philo->dead_phil))
 			return (NULL);
@@ -76,14 +74,15 @@ void	*solo_routine(void *arg)
 	t_philo	*philo;
 
 	philo = arg;
-	pthread_mutex_lock(philo->l_fork);
+	pthread_mutex_lock(philo->r_fork);
 	print_queue(philo, A_FORK);
 	while (1)
 	{
 		if (getter(philo->m_dead, philo->dead_phil))
 		{
-			pthread_mutex_unlock(philo->l_fork);
+			pthread_mutex_unlock(philo->r_fork);
 			return (NULL);
 		}
+		precise_usleep(1);
 	}
 }

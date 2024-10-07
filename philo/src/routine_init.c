@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 18:14:34 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/10/06 22:12:56 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:59:21 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	routine_init(t_table *table)
 		if (pthread_create(&table->philos[i].pt, NULL, solo_routine,
 				&table->philos[i]))
 			return (print_error(E_THREAD));
+		i++;
 	}
 	else
 	{
