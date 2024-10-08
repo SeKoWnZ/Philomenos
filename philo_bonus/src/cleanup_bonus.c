@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 00:20:30 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/10/06 19:38:53 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/08 14:07:27 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	cleanup(t_table *table)
 	tmp = table;
 	sem_close(tmp->sem_forks);
 	sem_close(tmp->sem_print);
+	sem_unlink("forks");
+	sem_unlink("print_queue");
 	while (++i < tmp->philo_n)
 		free(tmp->philo[i]);
 	free(tmp->philo);
