@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 17:46:16 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/09/15 20:57:29 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/08 03:31:06 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ long	check_nums(char *val)
 	long	num;
 
 	num = not_ft_atol(val);
-	if (num > INT_MAX)
+	if (num < 0 || num > INT_MAX)
 		num = -1;
 	return (num);
 }
