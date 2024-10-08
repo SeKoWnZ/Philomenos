@@ -6,7 +6,7 @@
 /*   By: jose-gon <jose-gon@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 17:46:16 by jose-gon          #+#    #+#             */
-/*   Updated: 2024/10/08 03:31:06 by jose-gon         ###   ########.fr       */
+/*   Updated: 2024/10/08 13:42:37 by jose-gon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ int	check_args(char **argv)
 	while (argv[++i])
 	{
 		if (str_isdigit(argv[i]))
-			return (print_error(E_NUM));
+		{
+			if (str_isdigit(argv[i]) == '-')
+				return (print_error(E_NUM_RANGE));
+			else
+				return (print_error(E_NUM));
+		}
 		if (check_nums(argv[i]) == -1)
 			return (print_error(E_NUM_RANGE));
 	}
